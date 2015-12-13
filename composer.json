@@ -1,0 +1,16 @@
+{
+    "name": "root/orm",
+    "description": "Orm from scratch for LAMP final test",
+    "authors": [
+        {
+            "name": "younesboulkaddid",
+            "email": "boulkaddid.younes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orm\\": "src"
+        }
+    },
+    "require": {}
+}
