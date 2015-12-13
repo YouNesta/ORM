@@ -1,5 +1,8 @@
 /vendor/
 composer.lock
+/app/log/
+app/config/config_prod.yml
+
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 

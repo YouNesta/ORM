@@ -6,9 +6,9 @@
  * Time: 17:57
  */
 require_once 'vendor/autoload.php';
+require_once(__DIR__.'/config.php');
 
 use Orm\Orm\Orm;
-define("OrmDir", __DIR__);
 
 Orm::init();
 

@@ -1,5 +1,5 @@
 database:
   host: localhost
   dbname: orm
-  user: root
+  user: roo
   password: root

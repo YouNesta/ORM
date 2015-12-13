@@ -7,7 +7,10 @@
  */
 namespace Orm\Orm;
 
-use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Parser,
+		Orm\Log,
+		Orm\Exceptions\ConnexionException;
+
 
 
 class Orm extends \PDO
@@ -16,17 +19,22 @@ class Orm extends \PDO
 
 	public static function init()
 	{
+		var_dump(baseDir);
 		$yaml = new Parser();
-		$data = $yaml->parse(file_get_contents(OrmDir.'/app/config/config_dev.yml'));
+		$data = $yaml->parse(file_get_contents(baseDir.'/app/config/config_'.ENV.'.yml'));
 
 		$host = $data['database']['host'];
 		$db = $data['database']['dbname'];
 		$user = $data['database']['user'];
 		$password = $data['database']['password'];
+		Log::access('MPMP0M');
 
-		self::$connexion = new \PDO('mysql:host='.$host.';dbname='.$db.';charset=UTF8', $user, $password);
-		self::$connexion->query("SET NAMES utf8;");
-		// UTILISER EXEPTION POUR VERIFIER QUE TOUT C'EST BIEN PASSÉ !
+		try {
+			self::$connexion = new \PDO('mysql:host='.$host.';dbname='.$db.'', $user, $password);
+			self::$connexion->query("SET NAMES utf8");
+		} catch (ConnexionException $e) {
+			throw new ConnexionException('Erreur lors de la connexion a la base de données '.$db.' : '.$e->getMessage());
+		}
 	}
 
 	public static function getConnexion()
