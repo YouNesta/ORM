@@ -1,9 +1,9 @@
 # ORM
-    Orm from scratch for LAMP final Test
+Orm from scratch for LAMP final Test
 
-Installation:
+# Installation:
     git clone https://github.com/YounesBoulkaddid/ORM
     composer install
 
-Database config:
+# Database config:
     app/config/config_dev.yml
