@@ -12,17 +12,6 @@ use Orm\Interfaces\QueryInterface;
 
 class QueryManager implements  QueryInterface{
 
-	private function varName($var) {
-		foreach($GLOBALS as $var_name => $value) {
-			if ($value === $var) {
-				return $var_name;
-			}
-		}
-
-		return false;
-	}
-
-
 	public function select($table , $column = '*'){
 		$query = "SELECT $column FROM $table";
 		return $query;
@@ -54,7 +43,6 @@ class QueryManager implements  QueryInterface{
 		$result = $connexion->query($query);
 	}
 	public function insert($methods){
-
 		$query = "INSERT INTO ".$this->getTable()." VALUE (''";
 
 		foreach($methods as $name => $method){
@@ -83,6 +71,7 @@ class QueryManager implements  QueryInterface{
 				$methods[$e['column_name']] = 'get'.ucfirst($e['column_name']);
 			};
 		}
+
 		if($this->getId() != null){
 			$query = $this->update($methods, $this);
 			$connexion->query($query);
@@ -93,10 +82,9 @@ class QueryManager implements  QueryInterface{
 			$this->setId($result);
 		}
 
-
-
 	}
 
 	public function countTable($table){
+
 	}
  }
