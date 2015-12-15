@@ -52,8 +52,11 @@ class QueryManager implements  QueryInterface{
 		$query .= ")";
 		return $query;
 	}
-	public function count(){
-
+	public static function countItems($self){
+		$connexion = Orm::getConnexion();
+		$query = "SELECT COUNT(*) FROM ".$self->getTable().";";
+		$result = $connexion->query($query)->fetch();
+		return $result[0];
 
 	}
 

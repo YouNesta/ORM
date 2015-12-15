@@ -37,11 +37,11 @@ class User extends QueryManager{
 
 
 	public function getMail() {
-		return $this->email;
+		return $this->mail;
 	}
 
 	public function setMail( $mail ) {
-		$this->email = $mail;
+		$this->mail = $mail;
 	}
 
 	public function getId() {
@@ -63,6 +63,15 @@ class User extends QueryManager{
 	public function save(){
 		$this->persist($this);
 	}
+	public static function factory(){
+		return new User;
+	}
 
+	public static function countItem(){
+		$self = self::factory();
+
+		$result = $self::countItems($self);
+		return $result;
+	}
 	/** */
 }
