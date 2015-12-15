@@ -15,6 +15,7 @@ class User extends QueryManager{
 	private $mail;
 	private $password;
 	private $table = 'user';
+	private $id = null;
 
 
 	/** GETTER AND SETTER*/

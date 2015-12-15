@@ -10,7 +10,7 @@ namespace Orm\Interfaces;
 interface QueryInterface {
 
 	function select($table, $column);
-	function update();
+	function update($method);
 	function delete();
 	function insert($methods);
 	function count();
