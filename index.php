@@ -13,9 +13,13 @@ use Orm\Orm\Orm,
 
 Orm::init();
 
+
 $user = new User();
 
 $user->setMail('younes@gmail.com');
 $user->setUsername('younes');
 $user->setPassword('younes');
 $user->save();
+
+
+$user->deleteByID();

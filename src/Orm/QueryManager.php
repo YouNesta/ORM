@@ -32,21 +32,21 @@ class QueryManager implements  QueryInterface{
 
 	}
 	public function delete(){
-
+		$query = "DELETE FROM ".$this->getTable()." WHERE id=".$this->getId();
+		$connexion = Orm::getConnexion();
+		$result = $connexion->query($query);
 	}
-	public function insert($table, $methods){
+	public function insert($methods){
 
-		$query = "INSERT INTO $table VALUE (''";
-
+		$query = "INSERT INTO ".$this->getTable()." VALUE (''";
 		foreach($methods as $name => $method){
 			$query .= ", '".$this->$method()."'";
 		}
-
 		$query .= ")";
-
 		return $query;
 	}
 	public function count(){
+
 
 	}
 
@@ -54,7 +54,6 @@ class QueryManager implements  QueryInterface{
 
 		$table = $this->getTable();
 		$connexion = Orm::getConnexion();
-
 		$columns = $connexion->query("SELECT table_name, column_name, data_type FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$table' AND table_schema = 'orm'")->fetchAll();
 		$methods = [];
 
@@ -66,10 +65,11 @@ class QueryManager implements  QueryInterface{
 			};
 		}
 
-		$query = $this->insert($table, $methods, $this);
+		$query = $this->insert($methods, $this);
+		$connexion->query($query);
+		$result = $connexion->lastInsertId();
+		$this->setId($result);
 
-		$result = $connexion->query($query);
-		
 	}
 
 	public function countTable($table){

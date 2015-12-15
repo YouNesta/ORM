@@ -17,3 +17,4 @@ define("ENV", 'dev');
 if(!is_dir(baseDir.'/app/log/')){
 	mkdir(baseDir.'/app/log/');
 }
+

@@ -12,7 +12,7 @@ interface QueryInterface {
 	function select($table, $column);
 	function update();
 	function delete();
-	function insert($table, $methods);
+	function insert($methods);
 	function count();
 
 }
