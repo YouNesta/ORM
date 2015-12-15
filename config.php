@@ -13,7 +13,6 @@ define("baseDir", __DIR__);
 define("ENV", 'dev');
 
 /** Create Folder for Log */
-var_dump(is_dir(baseDir.'/app/log/'));
 
 if(!is_dir(baseDir.'/app/log/')){
 	mkdir(baseDir.'/app/log/');

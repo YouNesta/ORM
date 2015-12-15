@@ -19,7 +19,6 @@ class Orm extends \PDO
 
 	public static function init()
 	{
-		var_dump(baseDir);
 		$yaml = new Parser();
 		$data = $yaml->parse(file_get_contents(baseDir.'/app/config/config_'.ENV.'.yml'));
 
@@ -27,13 +26,17 @@ class Orm extends \PDO
 		$db = $data['database']['dbname'];
 		$user = $data['database']['user'];
 		$password = $data['database']['password'];
-		Log::access('MPMP0M');
-
 		try {
-			self::$connexion = new \PDO('mysql:host='.$host.';dbname='.$db.'', $user, $password);
-			self::$connexion->query("SET NAMES utf8");
+			try{
+				self::$connexion = new \PDO('mysql:host='.$host.';dbname='.$db.'', $user, $password, array(
+						\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+				));
+				self::$connexion->query("SET NAMES utf8");
+			}catch(\PDOException $e){
+				throw new ConnexionException('Erreur lors de la connexion a la base de données '.$db.' : '.$e->getMessage());
+			}
 		} catch (ConnexionException $e) {
-			throw new ConnexionException('Erreur lors de la connexion a la base de données '.$db.' : '.$e->getMessage());
+			echo $e->getMessage();
 		}
 	}
 
@@ -41,6 +44,8 @@ class Orm extends \PDO
 	{
 		return self::$connexion;
 	}
+
+
 
 
 }
