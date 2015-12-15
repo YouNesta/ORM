@@ -23,4 +23,8 @@ $user->save();
 
 $user->setUsername('LOL');
 $user->save();
+
+
+$nmbUser = User::countItem();
+var_dump($nmbUser);
 //$user->deleteByID();
