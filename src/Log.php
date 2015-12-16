@@ -16,5 +16,6 @@ class Log {
 	}
 	public static function error($info){
 		file_put_contents(self::$errorLog, date("[d/m/y H:i:s]")." : ".$info->errorInfo()[2]." \n", FILE_APPEND);
+
 	}
 }

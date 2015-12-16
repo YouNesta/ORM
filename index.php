@@ -27,4 +27,10 @@ $user->save();
 
 $nmbUser = User::countItem();
 var_dump($nmbUser);
-//$user->deleteByID();
+
+//$user->deleteD();
+
+
+$nmbUser = User::countItem();
+var_dump($nmbUser);
+

@@ -56,9 +56,7 @@ class User extends QueryManager{
 		return $this->table;
 	}
 
-	public function deleteByID() {
-		$this->delete($this); //
-	}
+
 
 	public function save(){
 		$this->persist($this);

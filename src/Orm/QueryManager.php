@@ -31,8 +31,8 @@ class QueryManager implements  QueryInterface{
 			}else{
 				$query .= " `$name`=\"".$this->$method()."\", ";
 			}
-		}
 
+		}
 		$query .= "WHERE `id`=".$this->getId()."; ";
 
 		return $query;
@@ -48,6 +48,7 @@ class QueryManager implements  QueryInterface{
 		foreach($methods as $name => $method){
 			$query .= ", '".$this->$method()."'";
 		}
+		
 
 		$query .= ")";
 		return $query;
@@ -67,11 +68,11 @@ class QueryManager implements  QueryInterface{
 		$columns = $connexion->query("SELECT table_name, column_name, data_type FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$table' AND table_schema = 'orm';")->fetchAll();
 		$methods = [];
 
-		foreach( $columns as $e){
-			if($e['column_name'] == 'id'){
+		foreach( $columns as $column){
+			if($column['column_name'] == 'id'){
 				continue;
 			}else{
-				$methods[$e['column_name']] = 'get'.ucfirst($e['column_name']);
+				$methods[$column['column_name']] = 'get'.ucfirst($column['column_name']);
 			};
 		}
 
