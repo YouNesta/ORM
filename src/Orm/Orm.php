@@ -36,7 +36,7 @@ class Orm extends \PDO
 				throw new ConnexionException('Erreur lors de la connexion a la base de données '.$db.' : '.$e->getMessage());
 			}
 		} catch (ConnexionException $e) {
-			echo $e->getMessage();
+			echo $e;
 		}
 	}
 
