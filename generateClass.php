@@ -28,6 +28,7 @@ use Orm\Orm\Orm;
 
 Orm::init();
 
+
 $connexion = Orm::getConnexion();
 
 $result = $connexion->query("Show columns FROM user")->fetchAll();
